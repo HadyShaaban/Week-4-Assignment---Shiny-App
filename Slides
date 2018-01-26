@@ -1,0 +1,35 @@
+
+## Introduction
+
+Your body mass index, or BMI, gives a rough approximation of your body fat level. Doctors use it as a screening tool to determine if you're at possible risk of complications related to being overweight or obese. BMI is calculated according to your height and weight.
+The body mass index is calculated from your height, inches, and weight, pounds. The formula is:
+BMI = {weight \ height^2}*703
+where the 703 is to adjust for units.
+
+## Steps
+
+- This is a project of week 4 of Coursera developing Data Products.
+- Next slides contains R Code used to calculate.
+- All what is needed to do is to enter your weight in pounds and height in inches.
+
+
+
+
+
+## This slide show how to include R code embeded in the Application
+
+```{r ,echo=TRUE , eval=TRUE}
+##@show
+foot <- 5
+weightinbounds <- 66
+inches <- 9
+BMI <- (weightinbounds/(foot*inches)^2)*703
+BMI
+
+```
+
+## Links of the Application
+
+ - Application Can be found at this link : https://hady.shinyapps.io/Body_Mass_Index/
+
+
