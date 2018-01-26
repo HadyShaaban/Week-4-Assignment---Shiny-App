@@ -1,35 +1,51 @@
 
-## Introduction
+# This is the user-interface definition of a Shiny web application. You can
+# run the application by clicking 'Run App' above.
+#
+# Find out more about building applications with Shiny here:
+# 
+#    http://shiny.rstudio.com/
+#
 
-Your body mass index, or BMI, gives a rough approximation of your body fat level. Doctors use it as a screening tool to determine if you're at possible risk of complications related to being overweight or obese. BMI is calculated according to your height and weight.
-The body mass index is calculated from your height, inches, and weight, pounds. The formula is:
-BMI = {weight \ height^2}*703
-where the 703 is to adjust for units.
+library(shiny)
 
-## Steps
-
-- This is a project of week 4 of Coursera developing Data Products.
-- Next slides contains R Code used to calculate.
-- All what is needed to do is to enter your weight in pounds and height in inches.
-
-
-
-
-
-## This slide show how to include R code embeded in the Application
-
-```{r ,echo=TRUE , eval=TRUE}
-##@show
-foot <- 5
-weightinbounds <- 66
-inches <- 9
-BMI <- (weightinbounds/(foot*inches)^2)*703
-BMI
-
-```
-
-## Links of the Application
-
- - Application Can be found at this link : https://hady.shinyapps.io/Body_Mass_Index/
- - Source code for the Application can be found at this link : 
-
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+  
+  # Application title
+  titlePanel("BMI Calculator"),
+  
+  p("Instructions:  To calculate your body mass index enter your height and weight in the left
+    side panel windows.  There are three inputs.Height in feet and inches, weight. When you 
+    have your information entered, press the Calculate BMI button at the bottom.  The 
+    calculator comes preset with a height of 5 foot 9 inches and a weight of 165 pounds."),
+  br(),
+  # Sidebar with a three text inputs
+  sidebarLayout(position = "left",
+                sidebarPanel(
+                  h2('Enter your physical information:'),
+                  h3('Height'),
+                  numericInput("hf", label = h4("feet"),max=7,min=2, value = 5),
+                  numericInput("hin", label = h4("inches"),max=12,min=0, value = 9),
+                  h3('Weight'),
+                  #     This is some code that if I wanted to use a slider instead of text input 
+                  #      sliderInput(inputId = "wlbs", label = h4("pounds"),
+                  #                  min = 50, max = 350, value = 165)
+                  numericInput("wlbs", label = h4("pounds"),max=350,min=0, value = 165),
+                  submitButton('Calculate BMI')
+                ),
+                # Show the data entered and the calculated BMI
+                mainPanel(
+                  # plotOutput("distPlot")
+                  h3('You entered the following information:'),
+                  h4(textOutput("height_summary")),
+                  h4(textOutput("weight_summary")),
+                  br(),
+                  h3('Calculated Body Mass Index:'),
+                  h4(textOutput("bmi")),
+                  br(),
+                  h4('A table to evaluate your body fat:'),
+                  tableOutput("bmitable")
+                )
+  )
+))
